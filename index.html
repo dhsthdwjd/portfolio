@@ -316,14 +316,16 @@ body.menu-open .menu a.big span{transform:none}
 .career-stat.career-years span{margin-top:clamp(8px,1vw,18px)}
 .career-stat.career-projects{flex-direction:column;gap:clamp(8px,1vw,18px)}
 /* 두 숫자를 한 화면 좌우로 */
-.career-stat.career-years{left:28%;width:50vw}
-.career-stat.career-projects{left:72%;width:50vw}
+/* 위치를 transform(-50%)으로 잡으면 스크롤 모션이 transform을 덮어써서 화면 폭마다 틀어진다 → 좌우 절반 영역 안에서 flex로 가운데 정렬 */
+.career-stat.career-years,.career-stat.career-projects{top:0;bottom:0;height:auto;width:50%;transform:none;justify-content:center}
+.career-stat.career-years{left:0}
+.career-stat.career-projects{left:50%}
 .career-number .career-digit,.career-number .career-plus{height:clamp(110px,15vw,240px)}
 .career-stat span{font-size:clamp(18px,2.2vw,34px)}
 @media (max-width:767px){
-  .career-stat.career-years,.career-stat.career-projects{left:50%;width:100vw}
-  .career-stat.career-years{top:30%}
-  .career-stat.career-projects{top:70%}
+  .career-stat.career-years,.career-stat.career-projects{left:0;width:100%}
+  .career-stat.career-years{top:8%;bottom:50%}
+  .career-stat.career-projects{top:50%;bottom:8%}
   .career-number .career-digit,.career-number .career-plus{height:clamp(80px,22vw,120px)}
 }
 .career-stat span i{font-style:normal}
@@ -1295,6 +1297,11 @@ body.menu-open .menu-btn i{background:#fff!important}
 /* 02 디자인 카드: 스켈레톤 대신 아래 DESIGN.md 데모의 실제 앱 화면(홈·통계)을 복제해 축소 표시. fresh 테마 고정 */
 .sk-real{--t-bg:#fff;--t-surface:#f0f1ee;--t-ink:#0e0f0c;--t-muted:#454745;--t-key:#9fe870;--t-on-key:#0e0f0c;--t-soft:#e2f6d5;--t-line:#e8ebe6;--t-due:#d03238;--t-good:#2ead4b;--t-r-card:20px;--t-bnb-on:#054d28;--t-r-btn:999px;--t-font:"Pretendard Variable",Pretendard,sans-serif;--t-w-num:800;--t-w-title:700;--t-track:-.03em;--t-num-feat:normal;;position:relative;width:98px;height:213px;border-radius:14px;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.35)}
 .sk-real .ph{position:absolute;left:0;top:0;margin:0;transform:scale(.44);transform-origin:0 0;pointer-events:none}
+/* DESIGN.md 데모: 폰 5장이 한 화면에 다 들어가는 넓은 화면에서는 코드+폰 묶음을 가운데 정렬 */
+@media (min-width:1600px){
+  .td-stage{grid-template-columns:260px max-content!important;justify-content:center}
+  .td-phones{overflow:visible}
+}
 </style>
 </head>
 <body>
@@ -1549,8 +1556,8 @@ body.menu-open .menu-btn i{background:#fff!important}
     </div>
     <div class="td">
       <div class="td-head">
-        <h3 data-reveal>규칙 파일 하나만 바꾸면, 화면 전체가 바뀝니다.</h3>
-        <p>직접 만든 앱 화면 5장입니다. 아래에서 DESIGN.md를 바꿔 보세요. 컬러·모서리·글자 굵기 규칙이 모든 화면에 한 번에 적용됩니다.</p>
+        <h3 data-reveal>디자인 규칙으로 반복적인 수정 작업을 최소화합니다.</h3>
+        <p>아래 5개의 앱 화면은 DESIGN.md를 기반으로 구성했습니다. 컬러·모서리·글자 굵기 등의 규칙을 변경하면 모든 화면에 일괄 반영됩니다.</p>
       </div>
       <div class="td-bar">
         <div class="td-tabs" role="tablist">
